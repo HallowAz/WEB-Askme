@@ -1,0 +1,432 @@
+main > .container {
+    padding: 60px 15px 0;
+}
+
+header{
+    height: 100px;
+    width: 100%;
+    background-color: black;
+    position: fixed;
+    padding-left: 20px;
+    display: flex;
+    z-index: 1000;
+}
+
+.text_header{
+    color: white;
+}
+.logo{
+    margin-top: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.logo > a{
+    color:white;
+    text-decoration: none;
+}
+
+.search_text_field_class{
+    margin-top: 30px;
+    margin-left: 100px;
+    width: 20%;
+    border-radius: 10px;
+    height: 40px;
+}
+
+
+.btn_search{
+    margin-top: 30px;
+    background-color:green;
+    margin-left: 20px;
+    width: 120%;
+    height: 40px;
+}
+
+.btn_search:hover{
+    background-color:green;
+    color:white;
+}
+
+.profile{
+    margin-left: auto;    
+}
+
+.profile > .row{
+    height: 100%;
+    width: 300px;
+    margin-left: auto;
+}
+
+.profile > .row > .col-4{
+    height: 100%;
+}
+.profile > .row > .col-4 > img{
+    margin-left:auto;
+    height: 90%;
+    width: 90px;
+    margin-top: 5px;
+    /* margin-right: 100px; */
+    border-radius: 50%;
+}
+
+.profile > .row > .col-8{
+    height: 90%;
+    width: 160px;
+    margin-top: 5px;
+    border-radius: 50%;
+}
+
+.profile_name{
+    font-size:x-large;
+}
+
+.profile_name_div{
+    margin-left:10px;
+    margin-bottom: 5px;
+}
+
+.under_profile{
+    display: flex;
+    width: 100%;
+}
+
+.settings_class{
+    margin-right: 10px;
+}
+
+.log_out_class{
+    width: 60px;
+}
+
+main{
+    margin-left: 5%;
+    margin-top: 70px;
+}
+
+.two_parts_main{
+    display: flex;
+}
+
+.left_main_part{
+    margin-top: 50px;
+}
+
+
+.main_headers{
+    display: flex;
+}
+
+.main_h1{
+    margin-bottom: 20px;
+}
+
+.main_h4{
+    margin-top: 15px;
+    margin-left: 100px;
+}
+
+.question{
+    height: 220px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.question-avatar{
+    margin-top: 7px;
+    height: 180px;
+    width: 180px;
+}
+
+.question-avatar > img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.question-text{
+    margin-bottom: 5%;
+}
+
+.question_likes{
+    display: flex;
+}
+
+
+.question_likes > label{
+    margin-left: 100px;
+    margin-top: 2px;
+}
+
+
+.question_likes > input{
+    margin-left: 3px;
+    width: 30%;
+
+}
+
+.right_main_part{
+    padding-left: 75px;
+    padding-right: 75px;
+    margin-top: 50px;
+}
+
+.right_main_part > h1{
+    text-align: center;
+}
+
+.right_main_part > div > a{
+    font-size: 30px;
+    margin: 5px;
+}
+
+.best_members{
+    margin-top: 50px;
+}
+
+.best_members > ul{
+    list-style: none;
+    padding-left:0;
+}
+
+.best_members > ul > li > a{
+    font-size: 30px;
+}
+
+.main_question > .question{
+    height: 300px;
+}
+
+.main_question > .question{
+    height: 300px;
+    padding: 10px;
+    margin-bottom: 100px;
+    border: 0;
+}
+
+.main_question > .question > .row > .col-3 > .question-avatar{
+    margin-top: 7px;
+    height: 250px;
+    width: 250px;
+}
+
+.main_question > .question > .row > .col-9{
+    margin-top: 7px;
+    height: 250px;
+    position: relative;
+    /* width: 250px; */
+}
+
+.main_question > .question > .row > .col-9 > .row{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.question > .row > .col-10{
+    position: relative;
+    /* width: 250px; */
+}
+
+.question > .row > .col-10 > .row{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.main_question > .question > .row > .col-9 > .row > .question_likes > input{
+    margin-left: 3px;
+    width: 35%;
+
+}
+
+.main_question > .question > .row > .col-9 > .row > .question_likes > label{
+    margin-left: 80px;
+}
+
+hr{
+    border: 1px solid black;
+    
+}
+
+.answer{
+    height: 220px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.answer-avatar{
+    margin-top: 7px;
+    height: 180px;
+    width: 180px;
+}
+
+nav{
+    margin-top: 20px;
+}
+
+.answer-avatar > img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.answer-text{
+    margin-bottom: 5%;
+}
+
+.answer_likes{
+    display: flex;
+}
+
+
+.answer_likes > label{
+    margin-left: 100px;
+    margin-top: 2px;
+}
+
+
+.answer_likes > input{
+    margin-left: 3px;
+    width: 30%;
+
+}
+
+.answer > .row > .col-10 > .row > .col-3{
+    display: flex;
+    align-items: center;
+}
+
+.answer > .row > .col-10 > .row > .col-3 > input{
+    margin-left: 10px;   
+}
+
+.own_answer_text{
+   border-radius: 10px;
+   border: 2px solid black;
+   height: 300px;
+   width: 100%;
+   margin-bottom: 10px; 
+}
+
+.title_new_question{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.title_new_question > input{
+    width: 80%;
+}
+
+.text_new_question{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.text_new_question > label{
+    position: relative;
+    bottom:485px;
+}
+
+.text_new_question > textarea{
+    width: 80%;
+    height: 500px;
+    margin-left: 1px;
+}
+
+.tags_new_question{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.tags_new_question > input{
+    width: 80%;
+}
+
+.form_new_question > input{
+    margin-left: 37px;
+    width: 100px;
+}
+
+.form_login > .login_field{
+    margin-bottom: 30px;
+}
+
+.login_field > input{
+    margin-left: 50px;
+}
+
+.form_login > .password_field{
+    margin-bottom: 30px;
+}
+
+.password_field > input{
+    margin-left: 21px;
+}
+
+.form_login > .btn{
+    margin-left: 94px;
+}
+
+.form_login{
+    margin-bottom: 30px;
+}
+
+.new_acc_link{
+    margin-left:100px;
+}
+
+.profile > .row >.col-12 {
+    padding-top: 35px;
+}
+
+.header_login_register{
+    margin-left: 70px;
+}
+
+.header_login_register > a{
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.form_reg{
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.form_reg > .login_field > input{
+    margin-left: 100px;
+}
+
+.form_reg > .email_field > input{
+    margin-left: 100px;
+}
+
+.form_reg > .nickname_field > input{
+    margin-left: 68px;
+}
+
+.form_reg > .password_field > input{
+    margin-left: 70px;
+}
+
+.form_reg > .repeat_password_field > input{
+    margin-left: 13px;
+}
+
+.form_reg > .avatar_reg > input{
+    margin-left: 90px;
+}
+
+.form_reg > input{
+    margin-left: 140px;
+    width: 100px;
+}
