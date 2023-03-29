@@ -10,6 +10,7 @@ header{
     padding-left: 20px;
     display: flex;
     z-index: 1000;
+    min-width: 976px;
 }
 
 .text_header{
@@ -27,10 +28,11 @@ header{
 
 .search_text_field_class{
     margin-top: 30px;
-    margin-left: 100px;
+    margin-left: 5.5%;
     width: 20%;
     border-radius: 10px;
     height: 40px;
+    min-width: 100px;
 }
 
 
@@ -49,6 +51,7 @@ header{
 
 .profile{
     margin-left: auto;    
+    min-width: 288px;
 }
 
 .profile > .row{
@@ -126,28 +129,38 @@ main{
 }
 
 .question{
-    height: 220px;
+    min-height: 190px;
     border: 2px solid black;
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
+    min-width: 700px;
 }
 
 .question-avatar{
     margin-top: 7px;
-    height: 180px;
-    width: 180px;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
 }
 
 .question-avatar > img{
-    height: 100%;
-    width: 100%;
     border-radius: 50%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
     object-fit: cover;
 }
 
 .question-text{
     margin-bottom: 5%;
+    word-wrap: break-word;
+    min-height: 48px;
+    overflow: hidden;
+    max-height: 120px;
 }
 
 .question_likes{
@@ -156,7 +169,7 @@ main{
 
 
 .question_likes > label{
-    margin-left: 100px;
+    margin-left: 0px;
     margin-top: 2px;
 }
 
@@ -171,6 +184,8 @@ main{
     padding-left: 75px;
     padding-right: 75px;
     margin-top: 50px;
+    min-width: 315px;
+    overflow: hidden;
 }
 
 .right_main_part > h1{
@@ -201,15 +216,27 @@ main{
 
 .main_question > .question{
     height: 300px;
-    padding: 10px;
-    margin-bottom: 100px;
+    padding: 1px;
+    /* margin-bottom: 100px; */
     border: 0;
 }
 
 .main_question > .question > .row > .col-3 > .question-avatar{
     margin-top: 7px;
-    height: 250px;
-    width: 250px;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.main_question > .question > .row > .col-3 > .question-avatar > img{
+    border-radius: 50%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    object-fit: cover;
 }
 
 .main_question > .question > .row > .col-9{
@@ -231,6 +258,8 @@ main{
 }
 
 .question > .row > .col-10 > .row{
+    margin-top: 5px;
+    height: 30px;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -244,7 +273,7 @@ main{
 }
 
 .main_question > .question > .row > .col-9 > .row > .question_likes > label{
-    margin-left: 80px;
+    margin-left: 10px;
 }
 
 hr{
@@ -258,12 +287,15 @@ hr{
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
+    min-width: 700px;
 }
 
 .answer-avatar{
     margin-top: 7px;
-    height: 180px;
-    width: 180px;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
 }
 
 nav{
@@ -271,9 +303,12 @@ nav{
 }
 
 .answer-avatar > img{
-    height: 100%;
-    width: 100%;
     border-radius: 50%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
     object-fit: cover;
 }
 
@@ -358,6 +393,11 @@ nav{
     margin-bottom: 30px;
 }
 
+.login_field {
+    display: flex;
+
+}
+
 .login_field > input{
     margin-left: 50px;
 }
@@ -370,6 +410,9 @@ nav{
     margin-left: 21px;
 }
 
+.password_field {
+    display: flex;
+}
 .form_login > .btn{
     margin-left: 94px;
 }
@@ -406,8 +449,16 @@ nav{
     margin-left: 100px;
 }
 
+.form_reg > .email_field{
+    display: flex;
+}
+
 .form_reg > .email_field > input{
     margin-left: 100px;
+}
+
+.form_reg > .nickname_field{
+    display: flex;
 }
 
 .form_reg > .nickname_field > input{
@@ -418,8 +469,18 @@ nav{
     margin-left: 70px;
 }
 
+.form_reg > .repeat_password_field{
+    display: flex;
+    min-width: 512px;
+}
+
 .form_reg > .repeat_password_field > input{
     margin-left: 13px;
+}
+
+.form_reg > .avatar_reg{
+    display: flex;
+    min-width: 512px;
 }
 
 .form_reg > .avatar_reg > input{
