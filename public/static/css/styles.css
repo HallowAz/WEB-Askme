@@ -430,3 +430,8 @@ nav{
     margin-left: 140px;
     width: 100px;
 }
+
+.Errors_msgs{
+    color:red;
+    margin-bottom: 10px;
+}
