@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import QUESTIONS
 from .models import TAGS
+from .models import ANSWERS
+
 def right_tags(request):
     context = {'tags': TAGS}
     return render(request, 'inc/base.html', context)
@@ -11,7 +13,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 def question(request, question_id):
-    context = {'question': QUESTIONS[question_id]}
+    context = {'question': QUESTIONS[question_id], 'answers': ANSWERS}
     return render(request, 'question.html', context)
 
 def login(request):

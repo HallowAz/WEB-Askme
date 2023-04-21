@@ -35,36 +35,35 @@
 
   <!-- Begin page content -->
   <main class="main_class">
-        <div class="row two_parts_main">
-
-            {% block content %}
-            {% endblock content %}
-            <div class="col-4 right_main_part">
-              <div class="popular_tags">
-                <h1>Popular Tags</h1>
-                <a href="{% url 'tag' 'perl' %}">perl </a>
-                <a href="{% url 'tag' 'PYTHON' %}">PYTHON </a>
-                <a href="{% url 'tag' 'TechnoPark' %}">TechnoPark </a>
-                <a href="{% url 'tag' 'MYSQL' %}">MYSQL </a>
-                <a href="{% url 'tag' 'django' %}">django </a>
-                <a href="{% url 'tag' 'Mail.ru' %}">Mail.ru </a>
-                <a href="{% url 'tag' 'Voloshin' %}">Voloshin </a>
-                <a href="{% url 'tag' 'Firefox' %}">Firefox</a>
-                  </div>
-                  
-            <div class="best_members">
-                <h1>Best Members</h1>
-                <ul>
-                    <li><a href="#">First</a></li>
-                    <li><a href="#">Second</a></li>
-                    <li><a href="#">Third</a></li>
-                    <li><a href="#">Fourth</a></li> 
-                    <li><a href="#">Fifth</a></li>
-                </ul>
-                </div>
-            </div>
+    <div class="row two_parts_main">
+      {% block content %}
+      {% endblock content %}
+      <div class="col-4 right_main_part">
+        <div class="popular_tags">
+          <h1>Popular Tags</h1>
+          <a href="{% url 'tag' 'perl' %}">perl </a>
+          <a href="{% url 'tag' 'PYTHON' %}">PYTHON </a>
+          <a href="{% url 'tag' 'TechnoPark' %}">TechnoPark </a>
+          <a href="{% url 'tag' 'MYSQL' %}">MYSQL </a>
+          <a href="{% url 'tag' 'django' %}">django </a>
+          <a href="{% url 'tag' 'Mail.ru' %}">Mail.ru </a>
+          <a href="{% url 'tag' 'Voloshin' %}">Voloshin </a>
+          <a href="{% url 'tag' 'Firefox' %}">Firefox</a>
         </div>
-    </main>
+            
+        <div class="best_members">
+          <h1>Best Members</h1>
+          <ul>
+              <li><a href="#">First</a></li>
+              <li><a href="#">Second</a></li>
+              <li><a href="#">Third</a></li>
+              <li><a href="#">Fourth</a></li> 
+              <li><a href="#">Fifth</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+   </main>
 
   <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
