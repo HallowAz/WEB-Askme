@@ -1,0 +1,81 @@
+{%load static %}
+
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+  <meta charset="utf-8">
+  <title>HallowAsk</title>
+  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+  <link href= "{% static "css/styles.css" %}" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column h-100">
+
+  <header>
+    <h1 class="logo text_header"><a href="{%url "index"%}">HallowAsk</a></h1>
+    <input type="text" name="search_text" class="search_text_field_class" placeholder="Search">
+    <form action="{%url "ask"%}" class="ask_btn_form">
+      <input type="submit" name="search_btn" class="btn btn_search text_header" value="Ask">
+    </form>
+    <div class="profile text_header">
+      <div class="row">
+            <div class="col-4">
+                <img src="{% static "images/HallowAz.jpg"%}" alt="avatar">
+            </div>
+                <div class="col-8">
+                    <div class="profile_name_div"><a class="profile_name text_header" href="#">HallowAz</a></div>
+                    <div class="under_profile"><a class="text_header settings_class" href="#">Settings</a><a
+                        class="log_out_class text_header" href="{% url "login" %}">Log out</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+  </header>
+
+  <!-- Begin page content -->
+  <main class="main_class">
+        <div class="row two_parts_main">
+
+            {% block content %}
+            {% endblock content %}
+            <div class="col-4 right_main_part">
+              <div class="popular_tags">
+                <h1>Popular Tags</h1>
+                <a href="{% url 'tag' 'perl' %}">perl </a>
+                <a href="{% url 'tag' 'PYTHON' %}">PYTHON </a>
+                <a href="{% url 'tag' 'TechnoPark' %}">TechnoPark </a>
+                <a href="{% url 'tag' 'MYSQL' %}">MYSQL </a>
+                <a href="{% url 'tag' 'django' %}">django </a>
+                <a href="{% url 'tag' 'Mail.ru' %}">Mail.ru </a>
+                <a href="{% url 'tag' 'Voloshin' %}">Voloshin </a>
+                <a href="{% url 'tag' 'Firefox' %}">Firefox</a>
+                  </div>
+                  
+            <div class="best_members">
+                <h1>Best Members</h1>
+                <ul>
+                    <li><a href="#">First</a></li>
+                    <li><a href="#">Second</a></li>
+                    <li><a href="#">Third</a></li>
+                    <li><a href="#">Fourth</a></li> 
+                    <li><a href="#">Fifth</a></li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+      <span class="text-muted"></span>
+    </div>
+  </footer>
+
+
+  <script src="{% static "js/bootstrap.js"%}"></script>
+
+
+</body>
+
+</html>

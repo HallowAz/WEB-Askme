@@ -1,0 +1,29 @@
+{%load static%}
+
+<div class="question">
+    <div class="row">
+      <div class="col-2">
+        <div class="question-avatar">
+          <img src="{% static "images/HallowAz.jpg" %}" alt="avatar">
+        </div>
+
+      </div>
+      <div class="col-10">
+        <h2><a href="{% url "question" question.id%}">{{question.title}}</a></h2>
+        <div class="question-text">{{question.text}}</div>
+
+        <div class="row">
+          <div class="col-3">
+            <a href="{% url "question" question.id%}">Answers(3)</a>
+          </div>
+          <div class="col-6">
+            Tags: <a href="#">black-jack</a>, <a href="#">black-jack</a>
+          </div>
+          <div class="col-3 question_likes">
+            <label>Likes</label>
+            <input type="number" value="0">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
