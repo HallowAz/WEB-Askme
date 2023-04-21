@@ -30,3 +30,6 @@ def tag(request, tag_name):
     # tags = {'tags': TAGS}
     context = {'questions':QUESTIONS, 'tag_name':tag_name}
     return render(request, 'tag.html', context)
+
+def sign_up(request):
+    return render(request, 'signup.html')
