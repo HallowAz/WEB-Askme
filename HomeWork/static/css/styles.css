@@ -282,7 +282,7 @@ hr{
 }
 
 .answer{
-    height: 220px;
+    min-height: 190px;
     border: 2px solid black;
     border-radius: 10px;
     padding: 10px;
@@ -314,6 +314,10 @@ nav{
 
 .answer-text{
     margin-bottom: 5%;
+    word-wrap: break-word;
+    min-height: 48px;
+    overflow: hidden;
+    max-height: 120px;
 }
 
 .answer_likes{
@@ -322,7 +326,7 @@ nav{
 
 
 .answer_likes > label{
-    margin-left: 100px;
+    margin-left: 0px;
     margin-top: 2px;
 }
 
