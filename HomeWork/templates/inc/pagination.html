@@ -1,14 +1,19 @@
+
+
 <nav aria-label="Page navigation example">  
   <ul class="pagination">
   
     {%if current_page != 1%}
-    <li class="page-item"><a class="page-link" href="{% url 'index-page' current_page|add:-1 %}">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="{{ page_url }}{{'/'}}{{ current_page|add:-1 }}">Previous</a></li>
+    {% comment %} <li class="page-item"><a class="page-link" href="{{ page_url|add: current_page|add: -1}}">Previous</a></li> {% endcomment %}
+    
+    {% comment %} href="{% url page_url|addslashes %}/{{ current_page|add:-1 }}/" {% endcomment %}
     {%endif%}
 
     {%for page in pages%}
        {%if page != '…' %}
 
-        <li class="page-item"><a class="page-link" href="{% url 'index-page' page %}">{{page}}</a></li>
+        <li class="page-item"><a class="page-link" href="{{ page_url }}{{'/'}}{{ page}}">{{page}}</a></li>
 
         {%else%}
         <li class="page-item"><a class="page-link">{{page}}</a></li>
@@ -16,7 +21,8 @@
     {%endfor%}
 
     {%if current_page != pages|last %}
-      <li class="page-item"><a class="page-link" href="{% url 'index-page' current_page|add:1 %}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="{{ page_url }}{{'/'}}{{ current_page|add:1 }}">Next</a></li>
+      {% comment %} <li class="page-item"><a class="page-link" href="{% url 'index-page' current_page|add:1 %}">Next</a></li> {% endcomment %}
     {%endif%}
   
   </ul>

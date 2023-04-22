@@ -1,9 +1,5 @@
 from django.shortcuts import render
-# from django.http import HttpResponse
 from django.core.paginator import Paginator
-# from .models import QUESTIONS
-# from .models import TAGS
-# from .models import ANSWERS
 from askme.models import *
 import pdb
 
@@ -32,12 +28,19 @@ def login(request):
 def ask(request):
     return render(request, 'ask.html')
 
-def hot(request):
-    context = {'questions': QUESTIONS}
+def hot(request, page=1):
+    questions, pages =  paginate(list(QUESTIONS), page)
+    context =  {
+        'page_url':'/hot',
+        'questions':questions,
+        'questions_num':questions,
+        'pages': pages,
+        'current_page': page
+        }
+    
     return render(request, 'hot.html', context)
 
 def tag(request, tag_name):
-    # tags = {'tags': TAGS}
     context = {'questions':QUESTIONS, 'tag_name':tag_name}
     return render(request, 'tag.html', context)
 
