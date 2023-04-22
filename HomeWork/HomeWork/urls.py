@@ -20,6 +20,7 @@ from askme import views
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('index/<int:page>', views.index, name='index-page'),
     path('admin/', admin.site.urls),
     path('question/<int:question_id>/', views.question, name="question"),
     path('login/', views.login, name='login'),
