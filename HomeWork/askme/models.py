@@ -19,5 +19,5 @@ ANSWERS = [
         'title': f'Answer {i}',
         'text': f'Text {i}',
         'tag': f'tag {i}'    
-    } for i in range(3)
+    } for i in range(10)
 ]

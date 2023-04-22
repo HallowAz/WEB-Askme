@@ -18,8 +18,16 @@ def index(request, page=1):
         }
     return render(request, 'index.html', context)
 
-def question(request, question_id):
+def question(request, question_id, page=1):
     context = {'question': QUESTIONS[question_id], 'answers': ANSWERS}
+    answers, pages =  paginate(list(ANSWERS), page)
+    context =  {
+        'question':QUESTIONS[question_id],
+        'answers':answers,
+        'page_url':'/question/' + str(question_id),
+        'pages': pages,
+        'current_page': page
+        }
     return render(request, 'question.html', context)
 
 def login(request):
@@ -40,8 +48,17 @@ def hot(request, page=1):
     
     return render(request, 'hot.html', context)
 
-def tag(request, tag_name):
-    context = {'questions':QUESTIONS, 'tag_name':tag_name}
+def tag(request, tag_name, page=1):
+    questions, pages =  paginate(list(QUESTIONS), page)
+    context =  {
+        'tag_name':tag_name,
+        'page_url':'/tag/' + str(tag_name),
+        'questions':questions,
+        'questions_num':questions,
+        'pages': pages,
+        'current_page': page
+        }
+    
     return render(request, 'tag.html', context)
 
 def sign_up(request):
