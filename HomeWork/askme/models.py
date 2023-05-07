@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.query import QuerySet
+from django.contrib.auth.models import User
 
 QUESTIONS = [
     {
@@ -28,6 +30,7 @@ ANSWERS = [
 class profiles(models.Model):
     avatar = models.ImageField(null=True, blank=True)
     rating = models.IntegerField(default=0)
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name = 'User')
 
 class tags(models.Model):
     name = models.CharField(max_length=255)
@@ -54,3 +57,11 @@ class likes(models.Model):
     answer_id = models.ForeignKey(questions, on_delete=models.CASCADE, verbose_name='Answer', related_name='answer_likes', null=True, blank=True)
     author_id = models.ForeignKey(profiles, on_delete=models.CASCADE, verbose_name='Author')
 
+class HotQuestions(models.Manager):
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().order_by('-likes_count', 'header')
+    
+class NewQuestions(models.Manager):
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().order_by('-id')
+    
