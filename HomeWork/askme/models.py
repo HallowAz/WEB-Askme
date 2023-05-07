@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+import math
 
 QUESTIONS = [
     {
@@ -64,4 +66,20 @@ class HotQuestions(models.Manager):
 class NewQuestions(models.Manager):
     def get_queryset(self) -> QuerySet:
         return super().get_queryset().order_by('-id')
+
+class TagQuestions(models.Manager):
+    def get_queryset(self, tag_id) -> QuerySet:
+        return super().get_queryset().filter(tags__exact=tag_id)
     
+def paginate(object_list, page, per_page=3):
+    print(page)
+    
+    if page < 1:      
+        page = 1
+
+    if page >= len(object_list)/per_page:    
+        page = math.ceil(len(object_list) / per_page)
+        
+    p = Paginator(object_list, per_page)
+    return p.get_page(page), list(p.get_elided_page_range(page, on_each_side=1, on_ends=1))
+

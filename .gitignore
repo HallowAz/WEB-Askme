@@ -3,3 +3,4 @@ venv
 *.pyc
 .vscode
 db.sqlite3
+secret_data

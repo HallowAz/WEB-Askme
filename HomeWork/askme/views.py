@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.core.paginator import Paginator
+
 from askme.models import *
 import pdb
-import math
+
 
 def right_tags(request):
     context = {'tags': TAGS}
@@ -74,14 +74,3 @@ def sign_up(request):
     return render(request, 'signup.html')
 
 
-def paginate(object_list, page, per_page=3):
-    print(page)
-    
-    if page < 1:      
-        page = 1
-
-    if page >= len(object_list)/per_page:    
-        page = math.ceil(len(object_list) / per_page)
-        
-    p = Paginator(object_list, per_page)
-    return p.get_page(page), list(p.get_elided_page_range(page, on_each_side=1, on_ends=1))
