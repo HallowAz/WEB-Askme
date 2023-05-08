@@ -32,32 +32,32 @@ ANSWERS = [
 class profiles(models.Model):
     avatar = models.ImageField(null=True, blank=True)
     rating = models.IntegerField(default=0)
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name = 'User')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name = 'User')
 
 class tags(models.Model):
     name = models.CharField(max_length=255)
     
 class questions(models.Model):
-    author_id = models.ForeignKey(profiles, on_delete=models.CASCADE, verbose_name='Author')
+    author = models.ForeignKey(profiles, on_delete=models.CASCADE, verbose_name='Author')
     header = models.CharField(max_length=255)
-    text = models.TextField
+    text = models.TextField(default='')
     likes_count = models.IntegerField(default=0)
     answers_count = models.IntegerField(default=0)
     tags = models.ManyToManyField(tags)
     
 class answers(models.Model):
-    question_id = models.ForeignKey(questions, on_delete=models.CASCADE, verbose_name='Question')
-    author_id = models.ForeignKey(profiles, on_delete=models.CASCADE, verbose_name='Author')
+    question = models.ForeignKey(questions, on_delete=models.CASCADE, verbose_name='Question')
+    author = models.ForeignKey(profiles, on_delete=models.CASCADE, verbose_name='Author')
     header = models.CharField(max_length=255)
-    text = models.TextField
+    text = models.TextField(default = '')
     correct = models.BooleanField(default=False)
     likes_count = models.IntegerField(default=0)
 
 class likes(models.Model):
     status = models.IntegerField(default=0)
-    question_id = models.ForeignKey(questions, on_delete=models.CASCADE, verbose_name='Question', related_name='question_likes', null=True, blank=True)
-    answer_id = models.ForeignKey(questions, on_delete=models.CASCADE, verbose_name='Answer', related_name='answer_likes', null=True, blank=True)
-    author_id = models.ForeignKey(profiles, on_delete=models.CASCADE, verbose_name='Author')
+    question = models.ForeignKey(questions, on_delete=models.CASCADE, verbose_name='Question', related_name='question_likes', null=True, blank=True)
+    answer = models.ForeignKey(answers, on_delete=models.CASCADE, verbose_name='Answer', related_name='answer_likes', null=True, blank=True)
+    author = models.ForeignKey(profiles, on_delete=models.CASCADE, verbose_name='Author')
 
 class HotQuestions(models.Manager):
     def get_queryset(self) -> QuerySet:
