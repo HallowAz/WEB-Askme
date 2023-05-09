@@ -21,8 +21,8 @@ class Command(BaseCommand):
         # print('Answers')
         self.create_tags(count)
         print('Tags')
-        self.create_likes(count)
-        print('Likes')
+        # self.create_likes(count)
+        # print('Likes')
         self.create_questions_tags(count)
         print('End')
         
@@ -73,7 +73,23 @@ class Command(BaseCommand):
         
     def create_tags(self, count):
         count *= 2
-        tag = [tags(name=str(self.fake.words(1))) for _ in range(count)]
+        words = []
+        while len(words) < count:
+            new_words = ['#' + self.fake.word() for _ in range (count)]
+            
+            words += new_words
+            new_words = ['#' + self.fake.first_name() for _ in range (count)]
+            words += new_words
+            
+            new_words = ['#' + self.fake.domain_word() for _ in range (count)]
+            words += new_words
+            words = list(set(words))
+            
+            print(len(words))
+            
+            
+        tag = [tags(name=words[i]) for i in range(count)]  
+            
         tags.objects.bulk_create(tag)
         
     def create_likes(self, count):
@@ -123,10 +139,10 @@ class Command(BaseCommand):
 
 
     def create_questions_tags(self, count): 
-        questions_ = questions.objects.all()
+        questions_ = questions.new_q.all()
         tags_ = tags.objects.all()
         for question in questions_:
-            for i in range(random.randint(0, 5)):
+            for i in range(random.randint(0, 3)):
                 question.tags.add(tags_[random.randint(1, 2 * count - 1)])
             question.save()
         

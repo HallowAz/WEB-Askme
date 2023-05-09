@@ -12,14 +12,20 @@
 
                 </div>
                 <div class="col-9">
-                    <h2><a href="{% url 'question' question.id%}">{{question.title}}</a></h2>
+                    <h2><a href="{% url 'question' question.id%}">{{question.header}}</a></h2>
                     <div class="question-text">{{question.text}}</div>
 
                     <div class="row">
 
                         <div class="col-9">
-                            Tags: <a href="{% url 'tag' 'black-jack'%}">black-jack</a>, <a href="{% url 'tag' 'black-jack'%}">black-jack</a>
-                        </div>
+                            Tags: 
+                            {%for tag in question.tags.all%}
+                              {% comment %} {%for t in tag.name%} {% endcomment %}
+                                <a href="{% url 'tag' tag.name|slice:"1:"%}">
+                                  {{tag.name}}
+                                </a>
+                              {% comment %} {%endfor%} {% endcomment %}
+                            {%endfor%}                        </div>
                         <div class="col-3 question_likes">
                             <label>Likes</label>
                             <input type="number" value="0">

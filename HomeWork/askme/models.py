@@ -3,7 +3,7 @@ from django.db.models.query import QuerySet
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 import math
-
+import pdb
 QUESTIONS = [
     {
         'id': i,
@@ -38,6 +38,20 @@ class tags(models.Model):
     name = models.CharField(max_length=255)
     
 class questions(models.Model):
+    class HotQuestions(models.Manager):
+        def get_queryset(self) -> QuerySet:
+            return super().get_queryset().order_by('-likes_count', 'header')
+        
+    class NewQuestions(models.Manager):
+        def get_queryset(self) -> QuerySet:
+            return super().get_queryset().order_by('-id')
+    class TagQuestions(models.Manager):
+        def get_queryset(self, tag_id) -> QuerySet:
+            return super().get_queryset().filter(tags__exact=tag_id)
+        
+    hot = HotQuestions()
+    new_q = NewQuestions()
+    tag = TagQuestions()
     author = models.ForeignKey(profiles, on_delete=models.CASCADE, verbose_name='Author')
     header = models.CharField(max_length=255)
     text = models.TextField(default='')
@@ -59,25 +73,14 @@ class likes(models.Model):
     answer = models.ForeignKey(answers, on_delete=models.CASCADE, verbose_name='Answer', related_name='answer_likes', null=True, blank=True)
     author = models.ForeignKey(profiles, on_delete=models.CASCADE, verbose_name='Author')
 
-class HotQuestions(models.Manager):
-    def get_queryset(self) -> QuerySet:
-        return super().get_queryset().order_by('-likes_count', 'header')
-    
-class NewQuestions(models.Manager):
-    def get_queryset(self) -> QuerySet:
-        return super().get_queryset().order_by('-id')
 
-class TagQuestions(models.Manager):
-    def get_queryset(self, tag_id) -> QuerySet:
-        return super().get_queryset().filter(tags__exact=tag_id)
     
 def paginate(object_list, page, per_page=3):
-    print(page)
-    
-    if page < 1:      
+    print('hello')
+    if page <= 1:      
         page = 1
 
-    if page >= len(object_list)/per_page:    
+    elif page >= len(object_list)/per_page:    
         page = math.ceil(len(object_list) / per_page)
         
     p = Paginator(object_list, per_page)

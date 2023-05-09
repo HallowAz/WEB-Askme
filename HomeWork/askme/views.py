@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from askme.models import *
 import pdb
+from django.http import Http404
 
 
 def right_tags(request):
@@ -10,12 +11,10 @@ def right_tags(request):
 
 
 def index(request, page=1):
-  
-    questions, pages =  paginate(list(QUESTIONS), page)
+    questions_, pages =  paginate(list(questions.new_q.all()), page)
     context =  {
         'page_url':'/index',
-        'questions':questions,
-        'questions_num':questions,
+        'questions':questions_,
         'pages': pages,
         'current_page': page
         }
@@ -23,11 +22,16 @@ def index(request, page=1):
 
 
 def question(request, question_id, page=1):
-    context = {'question': QUESTIONS[question_id], 'answers': ANSWERS}
-    answers, pages =  paginate(list(ANSWERS), page)
+    
+    try:
+        question_ = questions.new_q.get(id = question_id)
+    except questions.DoesNotExist:
+        raise Http404("Question does not exist")
+
+    answers_, pages =  paginate(list(answers.objects.filter(question=question_id)), page)
     context =  {
-        'question':QUESTIONS[question_id],
-        'answers':answers,
+        'question':question_,
+        'answers':answers_,
         'page_url':'/question/' + str(question_id),
         'pages': pages,
         'current_page': page
@@ -44,11 +48,10 @@ def ask(request):
 
 
 def hot(request, page=1):
-    questions, pages =  paginate(list(QUESTIONS), page)
+    questions_, pages =  paginate(list(questions.hot.all()), page)
     context =  {
         'page_url':'/hot',
-        'questions':questions,
-        'questions_num':questions,
+        'questions':questions_,
         'pages': pages,
         'current_page': page
         }
@@ -57,12 +60,16 @@ def hot(request, page=1):
 
 
 def tag(request, tag_name, page=1):
-    questions, pages =  paginate(list(QUESTIONS), page)
+    try:
+        tag = tags.objects.get(name = tag_name)
+    except tags.DoesNotExist:
+        raise Http404("Tag does not exist")
+    
+    questions_, pages =  paginate(list(questions.new_q.filter(tags__id=tag.pk)), page)
     context =  {
-        'tag_name':tag_name,
-        'page_url':'/tag/' + str(tag_name),
-        'questions':questions,
-        'questions_num':questions,
+        'tag_name':tag.name,
+        'page_url':'/tag/' + '%23' + tag_name[1:],
+        'questions':questions_,
         'pages': pages,
         'current_page': page
         }
