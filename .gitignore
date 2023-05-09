@@ -3,4 +3,4 @@ venv
 *.pyc
 .vscode
 db.sqlite3
-HomeWork/HomeWork/secret_data.py
+secret_data.py
