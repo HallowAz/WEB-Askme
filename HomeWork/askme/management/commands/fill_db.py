@@ -13,16 +13,16 @@ class Command(BaseCommand):
                 
     def handle(self, **options):
         count = options['count']
-        # self.create_users(count)
-        # print('Users')
-        # self.create_questions(count)
-        # print('Questions')
-        # self.create_answers(count)
-        # print('Answers')
+        self.create_users(count)
+        print('Users')
+        self.create_questions(count)
+        print('Questions')
+        self.create_answers(count)
+        print('Answers')
         self.create_tags(count)
         print('Tags')
-        # self.create_likes(count)
-        # print('Likes')
+        self.create_likes(count)
+        print('Likes')
         self.create_questions_tags(count)
         print('End')
         
@@ -45,11 +45,9 @@ class Command(BaseCommand):
         print('authors:')
         print(len(authors))
         question = [questions(author=authors[self.fake.random_int(min=1, max=10000)], header=self.fake.sentence(), text=self.fake.text()) for _ in range(count)]
-        # , likes_count=self.fake.random_int(min=-10000, max=10000), answers_count=self.fake.random_int(min=0, max=1000)
         questions.objects.bulk_create(question)
         
     def create_answers(self, count):
-        # authors_ = profiles.objects.all()
         questions_ = questions.objects.all()
         print('questions:')
         print(len(questions_))
@@ -58,10 +56,7 @@ class Command(BaseCommand):
             question_dict[question.pk] = question
             
         count = count * 100
-        #  likes_count=self.fake.random_int(min=-10000, max=10000),
-        # answer = [answers(header=self.fake.sentence(), text=self.fake.text(), question=questions_[self.fake.random_int(min=1, max=10000)], author=authors_[self.fake.random_int(min=1, max=10000)], correct=self.fake.pybool()) for _ in range(count)]
         print('generating ended')
-        # answers.objects.bulk_create(answer)
         print('select ended')
         answer = answers.objects.all()
         for answ in answer:
