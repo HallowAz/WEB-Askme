@@ -40,23 +40,29 @@ class Command(BaseCommand):
         profiles.objects.bulk_create(profile)
         
     def create_questions(self, count):
+        old_count = count - 1
         count = count * 10
         authors = profiles.objects.all()
         print('authors:')
         print(len(authors))
-        question = [questions(author=authors[self.fake.random_int(min=1, max=10000)], header=self.fake.sentence(), text=self.fake.text()) for _ in range(count)]
-        questions.objects.bulk_create(question)
+        question = [questions(author=authors[self.fake.random_int(min=1, max=old_count)], header=self.fake.sentence(), text=self.fake.text()) for _ in range(count)]
+        questions.new_q.bulk_create(question)
         
     def create_answers(self, count):
-        questions_ = questions.objects.all()
+        questions_ = questions.new_q.all()
+        authors_ = profiles.objects.all()
         print('questions:')
         print(len(questions_))
         question_dict = {}
         for question in questions_:
             question_dict[question.pk] = question
             
+        questions_count = len(questions_)-1
+        authors_count = len(authors_) - 1
         count = count * 100
+        answer = [answers(header=self.fake.sentence(), text=self.fake.text(), question=questions_[self.fake.random_int(min=1, max=questions_count)], author=authors_[self.fake.random_int(min=1, max=authors_count)], correct=self.fake.pybool()) for _ in range(count)]
         print('generating ended')
+        answers.objects.bulk_create(answer)
         print('select ended')
         answer = answers.objects.all()
         for answ in answer:
@@ -89,9 +95,12 @@ class Command(BaseCommand):
         
     def create_likes(self, count):
         authors_ = profiles.objects.all()
-        questions_ = questions.objects.all()
+        questions_ = questions.new_q.all()
         answers_ = answers.objects.all()
-        count = count * 200
+        question_count = len(questions_) - 1
+        like_count = count * 200
+        answer_count = len(answers_) - 1
+        pdb.set_trace()
         question_dict = {}
         for question in questions_:
             question_dict[question.pk] = question
@@ -113,9 +122,9 @@ class Command(BaseCommand):
         
         for i in range(1000):
             if i % 2 == 0:
-                like = [likes(status=random.randint(-1, 1), question=questions_[random.randint(1, 10000)], author=authors_[random.randint(1, 10000)]) for _ in range(count//1000)]
+                like = [likes(status=random.randint(-1, 1), question=questions_[random.randint(1, question_count)], author=authors_[random.randint(1, count - 1)]) for _ in range(like_count//1000)]
             else:
-                like = [likes(status=random.randint(-1, 1), author=authors_[random.randint(1, 10000)], answer=answers_[random.randint(1, 1000000)]) for _ in range(count//1000)]
+                like = [likes(status=random.randint(-1, 1), author=authors_[random.randint(1, count - 1)], answer=answers_[random.randint(1, answer_count)]) for _ in range(like_count//1000)]
                 
             likes.objects.bulk_create(like)
             print(f'done {i}')
