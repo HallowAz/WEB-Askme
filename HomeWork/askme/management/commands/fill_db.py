@@ -2,6 +2,8 @@ from django.core.management.base import BaseCommand
 from askme.models import *
 from faker import Faker
 import random
+from django.contrib.auth.hashers import make_password
+
 
 class Command(BaseCommand):
     
@@ -12,19 +14,21 @@ class Command(BaseCommand):
         parser.add_argument('count', type=int, help='Number of records to add to the database')
                 
     def handle(self, **options):
-        count = options['count']
-        self.create_users(count)
-        print('Users')
-        self.create_questions(count)
-        print('Questions')
-        self.create_answers(count)
-        print('Answers')
-        self.create_tags(count)
-        print('Tags')
-        self.create_likes(count)
-        print('Likes')
-        self.create_questions_tags(count)
-        print('End')
+
+        self.test_create()        
+        # count = options['count']
+        # self.create_users(count)
+        # print('Users')
+        # self.create_questions(count)
+        # print('Questions')
+        # self.create_answers(count)
+        # print('Answers')
+        # self.create_tags(count)
+        # print('Tags')
+        # self.create_likes(count)
+        # print('Likes')
+        # self.create_questions_tags(count)
+        # print('End')
         
     def create_users(self, count):
         usernames = []
@@ -149,4 +153,13 @@ class Command(BaseCommand):
             for i in range(random.randint(0, 3)):
                 question.tags.add(tags_[random.randint(1, 2 * count - 1)])
             question.save()
+    
+    def test_create(self):
         
+        hash_pass = make_password("hallow")
+        userd = User(password=hash_pass, username="Hallow", email=self.fake.email())
+        
+        profile = profiles(user=userd)
+        
+        userd.save()
+        profile.save()

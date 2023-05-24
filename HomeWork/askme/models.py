@@ -4,14 +4,16 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 import math
 import pdb
-QUESTIONS = [
-    {
-        'id': i,
-        'title': f'Question {i}',
-        'text': f'Text {i}',
-        'tag': f'tag {i}'    
-    } for i in range(20)
-]
+
+
+# QUESTIONS = [
+#     {
+#         'id': i,
+#         'title': f'Question {i}',
+#         'text': f'Text {i}',
+#         'tag': f'tag {i}'    
+#     } for i in range(20)
+# ]
 
 TAGS = [
     {
@@ -19,14 +21,14 @@ TAGS = [
     } for i in range(10)
 ]
 
-ANSWERS = [
-    {
-        'id': i,
-        'title': f'Answer {i}',
-        'text': f'Text {i}',
-        'tag': f'tag {i}'    
-    } for i in range(10)
-]
+# ANSWERS = [
+#     {
+#         'id': i,
+#         'title': f'Answer {i}',
+#         'text': f'Text {i}',
+#         'tag': f'tag {i}'    
+#     } for i in range(10)
+# ]
 
 
 class profiles(models.Model):
@@ -67,6 +69,7 @@ class answers(models.Model):
     correct = models.BooleanField(default=False)
     likes_count = models.IntegerField(default=0)
 
+# Generic foreign key https://docs.djangoproject.com/en/4.2/ref/contrib/contenttypes/
 class likes(models.Model):
     status = models.IntegerField(default=0)
     question = models.ForeignKey(questions, on_delete=models.CASCADE, verbose_name='Question', related_name='question_likes', null=True, blank=True)
@@ -86,3 +89,10 @@ def paginate(object_list, page, per_page=3):
     p = Paginator(object_list, per_page)
     return p.get_page(page), list(p.get_elided_page_range(page, on_each_side=1, on_ends=1))
 
+def new_us(us):
+     user_n = User.objects.create_user(username=us['username'], first_name=us['first_name'], last_name=us['last_name'], email=us['email'], password=us['password'])
+     profile = profiles(user=user_n)
+     profile.save()
+     return user_n
+    
+    

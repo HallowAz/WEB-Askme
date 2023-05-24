@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('question/<int:question_id>/', views.question, name="question"),
     path('question/<int:question_id>/<int:page>', views.question, name="question"),
-    path('login/', views.login, name='login'),
+    path('login/', views.log_in, name='login'),
     path('ask/', views.ask, name='ask'),
     path('hot/', views.hot, name='hot'),
     path('hot/<int:page>', views.hot, name='hot-page'),

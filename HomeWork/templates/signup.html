@@ -1,13 +1,17 @@
 {% extends  "inc/base_login.html"%}
 
 {%block content%}
+{% load bootstrap5%}
 
 <div class="col-8 left_main_part">
     <div class="main_headers">
         <h1 class="main_h1">Registration</h1>
     </div>
-    <form action="{%url 'index'%}" class="form_reg">
-        <div class="login_field">
+    <form action="/signup/" method = "post" class="form_reg mt-5" novalidate>
+        {% csrf_token %}
+        {% bootstrap_form form%}    
+
+        {% comment %} <div class="login_field">
             <label for="login">Login</label>
             <input type="text" name="login" required maxlength="30" minlength="6">
         </div>
@@ -30,7 +34,7 @@
         <div class="avatar_reg">
             <label for="avatar">Avatar</label>
             <input type="file" name="avatar">
-        </div>
+        </div> {% endcomment %}
         <input type="submit" name="btn_login" value="Register" class="btn btn-success">
     </form>
 </div>

@@ -2,14 +2,19 @@ from django.shortcuts import render
 
 from askme.models import *
 import pdb
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
-
+from django.contrib import auth
+from askme.forms import * 
+from django.shortcuts import redirect
+from django.urls import reverse
 
 def right_tags(request):
     context = {'tags': TAGS}
     return render(request, 'inc/base.html', context)
 
-
+# @login_required(login_url='login/')
 def index(request, page=1):
     questions_, pages =  paginate(list(questions.new_q.all()), page)
     context =  {
@@ -17,7 +22,7 @@ def index(request, page=1):
         'questions':questions_,
         'pages': pages,
         'current_page': page
-        }
+        }   
     return render(request, 'index.html', context)
 
 
@@ -39,8 +44,25 @@ def question(request, question_id, page=1):
     return render(request, 'question.html', context)
 
 
-def login(request):
-    return render(request, 'login.html')
+def log_in(request):
+    
+    
+    if request.method == 'GET':
+        login_form = LoginForm()
+        
+        print(request.GET)
+    elif request.method == 'POST':    
+        login_form = LoginForm(request.POST)
+        
+        print(request.POST['continue_'])
+        if login_form.is_valid():
+            user = auth.authenticate(request=request, **login_form.cleaned_data)
+            if user:
+                print("Hello")
+                login(request, user)
+                return redirect(reverse(request.POST['continue_']))
+            login_form.add_error(None, "Invalid username or password")
+    return render(request, 'login.html', context={'form':login_form})
 
 
 def ask(request):
@@ -78,6 +100,19 @@ def tag(request, tag_name, page=1):
 
 
 def sign_up(request):
-    return render(request, 'signup.html')
+    if request.method == "GET":
+        register_form = RegistrationForm()
+    elif request.method == "POST":
+        register_form = RegistrationForm(request.POST)
+        if register_form.is_valid():
+            us = new_us(request.POST)
+            us_data = {'username': us.username, 'password': request.POST['password']}
+            login_form = LoginForm(request.POST)
+            if login_form.is_valid():
+                user =  auth.authenticate(request=request, **login_form.cleaned_data)
+                if user:
+                    login(request, user)
+                    return redirect(reverse('index'))
+    return render(request, 'signup.html', context={'form':register_form})
 
 
