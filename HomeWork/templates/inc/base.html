@@ -19,17 +19,26 @@
       <input type="submit" name="search_btn" class="btn btn_search text_header" value="Ask">
     </form>
     <div class="profile text_header">
+      {%if user.is_authenticated%}
       <div class="row">
-            <div class="col-4">
-                <img src="{% static "images/HallowAz.jpg"%}" alt="avatar">
-            </div>
-                <div class="col-8">
-                    <div class="profile_name_div"><a class="profile_name text_header" href="#">HallowAz</a></div>
-                    <div class="under_profile"><a class="text_header settings_class" href="#">Settings</a><a
-                        class="log_out_class text_header" href="{% url "login" %}">Log out</a>
-                    </div>
-                </div>
+          <div class="col-4">
+              <img src="{% static "images/HallowAz.jpg"%}" alt="avatar">
+          </div>
+              <div class="col-8">
+                  <div class="profile_name_div"><a class="profile_name text_header" href="#">{{user.username}}</a></div>
+                  <div class="under_profile"><a class="text_header settings_class" href="#">Settings</a><a
+                      class="log_out_class text_header" href="{% url "logout_ref" %}">Log out</a>
+                  </div>
+              </div>
+      </div>
+      {%else%}
+      <div class="row">
+        <div class="col-12">
+            <div class="header_login_register"><a class="text_header login_header_class" href="{% url 'login' %}">Log in</a><a
+                    class="register_class text_header" href="{% url "signup"%}">Register</a></div>
         </div>
+      </div>
+      {%endif%}
     </div>
   </header>
 

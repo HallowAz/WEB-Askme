@@ -1,12 +1,16 @@
 {% extends  "inc/base.html"%}
 
 {%block content%}
+{% load bootstrap5%}
 <div class="col-8 left_main_part">
     <div class="main_headers">
         <h1 class="main_h1">New question</h1>
     </div>
-    <form action="{%url 'index'%}" class="form_new_question">
-        <div class="title_new_question">
+    <form action="/ask/" class="form_new_question" method='post' novalidate>
+        {% csrf_token %}
+        {% bootstrap_form form%} 
+
+        {% comment %} <div class="title_new_question">
             <label for="title_new_question">Title</label>
             <input type="text" name="title_new_qusetion" required maxlength="140">
         </div>
@@ -18,7 +22,8 @@
             <label for="tags_new_question">Tags</label>
             <input type="text" name="tags_new_qusetion" maxlength="140">
         </div>
-        <input type="submit" name="btn_new_question" value="Ask" class="btn btn-success">
+        {% endcomment %}
+        <input type="submit" name="btn_new_question" value="Ask" class="btn btn-success"> 
     </form>
 
 </div>

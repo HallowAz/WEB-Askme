@@ -49,3 +49,13 @@ class RegistrationForm(forms.ModelForm):
         if not self.cleaned_data['password_check'] == self.cleaned_data['password']:
             raise ValidationError('Passwords are not same')
                 
+class AskForm(forms.ModelForm):
+    class Meta:
+        model = questions
+        fields = ['header', 'text']
+    tags_ = forms.CharField(required=False)
+    
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = answers
+        fields = ['text']

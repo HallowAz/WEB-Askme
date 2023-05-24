@@ -3,6 +3,7 @@ from django.shortcuts import render
 from askme.models import *
 import pdb
 from django.contrib.auth import login
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.contrib import auth
@@ -43,6 +44,14 @@ def question(request, question_id, page=1):
         }
     return render(request, 'question.html', context)
 
+# def answer(request):
+#     if request.method == 'GET':
+#         print(request.GET)
+#     elif request.method == 'POST':    
+#         answer_form = AnswerForm(request.POST)
+#         if answer_form.is_valid():
+            
+#     return render(request, 'question.html', context={'form':answer_form})
 
 def log_in(request):
     
@@ -64,9 +73,16 @@ def log_in(request):
             login_form.add_error(None, "Invalid username or password")
     return render(request, 'login.html', context={'form':login_form})
 
-
+@login_required
 def ask(request):
-    return render(request, 'ask.html')
+    if request.method == 'GET':
+        ask_form = AskForm()
+    elif request.method == 'POST':
+        ask_form = AskForm(request.POST)
+        if ask_form.is_valid():
+            new_q(request.POST, request.user)
+            return redirect(reverse('index'))
+    return render(request, 'ask.html', context={'form':ask_form})
 
 
 def hot(request, page=1):
@@ -113,6 +129,10 @@ def sign_up(request):
                 if user:
                     login(request, user)
                     return redirect(reverse('index'))
+                
     return render(request, 'signup.html', context={'form':register_form})
 
 
+def logout_ref(request):
+    logout(request)
+    return redirect(request.META.get('HTTP_REFERER'))

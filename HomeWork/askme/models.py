@@ -94,5 +94,25 @@ def new_us(us):
      profile = profiles(user=user_n)
      profile.save()
      return user_n
-    
-    
+ 
+def new_q(quest, user):
+    tags_ = quest['tags_'].split(' ')
+    user_ = User.objects.get(username = user.username)
+    profile = profiles.objects.get(user = user_)
+    quest = questions(author= profile, header = quest['header'], text = quest['text'])
+    quest.save()
+    for tag in tags_:
+        try:
+            tag_ = tags.objects.get(name=tag) 
+        except tags.DoesNotExist:
+            tag_ = tags(name = tag)
+            tag_.save()
+        quest.tags.add(tag_)        
+    quest.save()    
+    print(tag)
+        
+def new_ans(answ, quest, user):
+    user_ = User.objects.get(username = user.username)
+    profile = profiles.objects.get(user = user_)
+    quest = questions.objects.get(id = quest)
+    answer = answers(text = answ['text'], author = profile, question = quest)

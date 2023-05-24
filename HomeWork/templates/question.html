@@ -1,6 +1,7 @@
 {%extends "inc/base.html"%}
 {%load static%}
 {%block content%}
+{% load bootstrap5%}
 <div class="col-8 left_main_part one_question">
     <div class="main_question">
         <div class="question">
@@ -50,7 +51,7 @@
 
             <div class="own_answer">
                 <h1>Your answer</h1>
-                <form action="#">
+                <form action="/index/" method = "post" novalidate>
                     <textarea name="own_answer" class="own_answer_text" required></textarea>
                     <input type="submit" name="answer_button" value="Answer" class="btn btn-success">
                 </form>

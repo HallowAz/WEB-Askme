@@ -30,5 +30,6 @@ urlpatterns = [
     path('hot/<int:page>', views.hot, name='hot-page'),
     path('tag/<tag_name>', views.tag, name='tag'),
     path('tag/<tag_name>/<int:page>', views.tag, name='tag'),
-    path('signup/', views.sign_up, name='signup')
+    path('signup/', views.sign_up, name='signup'),
+    path('logout/', views.logout_ref, name='logout_ref')
 ]
